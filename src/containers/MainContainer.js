@@ -17,16 +17,35 @@ class MainContainer extends Component {
   }
 
   sort = e => {
-
     if(e.target.value === "Alphabetically"){
     e.target.parentNode.parentNode.childNodes[2].childNodes[0].checked = false
-    this.setState({sort: "Alphabetically"})
-    console.log(this.state)
-  } else {
+    e.target.parentNode.parentNode.childNodes[3].childNodes[0].checked = false
+
+     this.setState({
+      sort: "Alphabetically",
+      stocks: this.state.stocks.sort((a, b) => a.name.localeCompare(b.name) )
+          })
+
+  } else if(e.target.value === "Price") {
+
     e.target.parentNode.parentNode.childNodes[1].childNodes[0].checked = false
-    this.setState({sort: "Price"})
+            e.target.parentNode.parentNode.childNodes[3].childNodes[0].checked = false
+    this.setState({
+      sort: "Price",
+      stocks: this.state.stocks.sort((a, b) => b.price > a.price ? 1 : -1)
+    })
+
+  } else if(e.target.value === "Type") {
+
+    e.target.parentNode.parentNode.childNodes[1].childNodes[0].checked = false
+            e.target.parentNode.parentNode.childNodes[2].childNodes[0].checked = false
+    this.setState({
+      sort: "Price",
+      stocks: this.state.stocks.sort((a, b) => b.type > a.type ? 1 : -1)
+    })
     console.log(this.state)
   }
+
 }
 
   trackStock = e => {
