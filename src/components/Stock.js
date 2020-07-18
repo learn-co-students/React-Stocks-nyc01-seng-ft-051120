@@ -1,15 +1,18 @@
 import React from 'react'
 
-const Stock = () => (
+const Stock = (props) => {
+  const {addPortfolio, sell, removePortfolio, name,  id, price}=props
+  return (
   <div>
 
-    <div className="card">
+    <div className="card" onClick={sell?()=>removePortfolio(id):()=>addPortfolio(id)} >
       <div className="card-body">
-        <h5 className="card-title">{
-            //Company Name
+        <h5 className="card-title">
+          {
+            name
           }</h5>
         <p className="card-text">{
-            //ticker: stock price
+            price
           }</p>
       </div>
     </div>
@@ -17,5 +20,8 @@ const Stock = () => (
 
   </div>
 );
+}
+
+
 
 export default Stock
